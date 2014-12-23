@@ -14,10 +14,12 @@ public class AnswerDao {
 	public void insert(Answer answer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "INSERT INTO ANSWERS (writer, contents, createdDate, questionId) VALUES (?, ?, ?, ?)";
+		String sql2 = "UPDATE QUESTIONS SET countOfComment = countOfComment+1 WHERE questionId = ?";
 		jdbcTemplate.executeUpdate(sql, answer.getWriter(),
 				answer.getContents(),
 				new Timestamp(answer.getTimeFromCreateDate()),
 				answer.getQuestionId());
+		jdbcTemplate.executeUpdate(sql2, answer.getQuestionId());
 	}
 
 	public List<Answer> findAllByQuestionId(long questionId) {

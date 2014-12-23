@@ -16,7 +16,7 @@ function writeAnswers(e) {
 	 
 	 request.onreadystatechange = function() {
 		 if(request.readyState == 4 && request.status == 200) {
-			 location.reload(true);
+			 location.reload(true); // refresh
 		 }
 	 }
 	 
